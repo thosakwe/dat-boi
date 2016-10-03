@@ -3,13 +3,14 @@ import {States} from "../index";
 import Protagonist from "../../game-object/protagonist";
 
 export default class Title extends State {
-    protagonist:Protagonist;
-    instructions:Text;
-    play:Text;
-    title:Text;
+    protagonist: Protagonist;
+    instructions: Text;
+    play: Text;
+    title: Text;
 
     preload(): void {
         this.load.image('bro', 'assets/backgrounds/tile.png');
+        this.load.audio('song', 'assets/sounds/troll_song.mp3');
         this.protagonist = new Protagonist(this.game);
         this.protagonist.preload();
     }
@@ -17,6 +18,12 @@ export default class Title extends State {
     create(): void {
         this.stage.backgroundColor = '#fff';
         this.world.resize(window.innerWidth, window.innerHeight);
+
+        const song = this.add.audio('song', 1, true);
+
+        song.onDecoded.add(() => {
+            song.fadeIn(4000);
+        });
 
         this.title = this.add.text(0, 0, 'The Adventures of Dat Boi', {
             boundsAlignH: 'center',
