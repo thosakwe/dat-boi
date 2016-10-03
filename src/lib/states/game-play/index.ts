@@ -146,7 +146,7 @@ export default class GamePlayState extends State {
             this.protagonist.sprite.visible = false;
             this._paused = true;
 
-            this.npc.forEachAlive((group: Group) => {
+            this.npc.forEach((group: Group) => {
                 group.forEachAlive((sprite: Sprite) => {
                     sprite.kill();
                 }, this);
@@ -210,7 +210,21 @@ export default class GamePlayState extends State {
     shutdown() {
         this._paused = false;
         this._score = 0;
+        this._lastSpeed = 0;
         this._lives = 0;
+        this._powerUpLifeSpan = 10000;
+        this._shootInterval = 250;
+        this._shootTimer = 0;
+        this._spawnInterval = 1000;
+        this._spawnTimer = 0;
+        this._starMode = false;
+        this._trollFaceSpeed = 40;
+
+        this.npc.forEach((group: Group) => {
+            group.forEachAlive((sprite: Sprite) => {
+                sprite.kill();
+            }, this);
+        }, this);
     }
 
     spawnBoost(x: number, y: number): Sprite {
