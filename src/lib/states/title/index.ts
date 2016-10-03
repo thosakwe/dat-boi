@@ -20,10 +20,7 @@ export default class Title extends State {
         this.world.resize(window.innerWidth, window.innerHeight);
 
         const song = this.add.audio('song', 1, true);
-
-        song.onDecoded.add(() => {
-            song.fadeIn(4000);
-        });
+        song.play('', 0, 1, true, true);
 
         this.title = this.add.text(0, 0, 'The Adventures of Dat Boi', {
             boundsAlignH: 'center',
