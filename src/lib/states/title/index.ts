@@ -65,6 +65,7 @@ export default class Title extends State {
         this.instructions.setTextBounds(0, 10, this.world.width / 2, this.instructions.height);
 
         this.instructions.events.onInputDown.add(() => {
+            song.stop();
             this.game.state.start(States.CONTROLS);
         });
     }
