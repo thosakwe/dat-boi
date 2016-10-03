@@ -155,7 +155,7 @@ export default class GamePlayState extends State {
             this.camera.fade(0, 1000);
 
             setTimeout(() => {
-                alert(`RIP to Dat Boi.\n\nYour score: ${this._score} points`);
+                alert(`RIP to Dat Boi.`);
                 this.game.state.start(States.GAME_OVER, true, false, this._score);
             }, 1000);
         }
