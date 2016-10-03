@@ -20,7 +20,7 @@ export default class Title extends State {
         this.world.resize(window.innerWidth, window.innerHeight);
 
         const song = this.add.audio('song', 1, true);
-        song.play('', 0, 1, true, true);
+        song.play();
 
         this.title = this.add.text(0, 0, 'The Adventures of Dat Boi', {
             boundsAlignH: 'center',
@@ -47,6 +47,7 @@ export default class Title extends State {
         this.play.setTextBounds(0, 10, this.world.width / 2, this.play.height);
 
         this.play.events.onInputDown.add(() => {
+            song.stop();
             this.game.state.start(States.GAMEPLAY);
         });
 
@@ -62,6 +63,7 @@ export default class Title extends State {
         this.instructions.setTextBounds(0, 10, this.world.width / 2, this.instructions.height);
 
         this.instructions.events.onInputDown.add(() => {
+            song.stop();
             this.game.state.start(States.CONTROLS);
         });
     }
